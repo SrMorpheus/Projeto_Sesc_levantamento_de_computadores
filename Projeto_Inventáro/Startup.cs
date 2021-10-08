@@ -2,10 +2,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Projeto_Inventáro.Models.Context;
+using Projeto_Inventáro.Services.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +29,18 @@ namespace Projeto_Inventáro
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
             services.AddControllers();
+
+            var connection = Configuration["MySQLConnection :MySQLConnectionString"];
+
+            services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
+            //Dependncy Injection
+            services.AddScoped<IComputadorService, ComputadorServiceImplementation>();
+
+
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

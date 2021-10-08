@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Projeto_Inventáro.Services.Implementations
 {
-    interface IComputadorService
+    public interface IComputadorService
     {
 
 

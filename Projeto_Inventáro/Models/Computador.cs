@@ -15,12 +15,12 @@ namespace Projeto_Inventáro.Models
         [Required()]
         public string NomeComptador { get; set; }
         
-        [Required()]
+      //  [Required()]
         public Modelo Modelos { get; set; }
 
         public int ModeloId { get; set; }
 
-        [Required()]
+        //[Required()]
         public Equipamento Equipamentos { get; set; }
         public int EquipamentoId { get; set; }
 
@@ -42,7 +42,7 @@ namespace Projeto_Inventáro.Models
 
         public int SetorId { get; set; }
 
-        [Required()]
+       // [Required()]
         public Setor Setores { get; set; }
 
 
