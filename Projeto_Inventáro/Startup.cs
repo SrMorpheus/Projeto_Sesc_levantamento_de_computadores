@@ -33,10 +33,11 @@ namespace Projeto_Inventáro
 
             services.AddControllers();
 
-            var connection = Configuration["MySQLConnection :MySQLConnectionString"];
-
+            //DATABSE
+            var connection = Configuration["MySQLConnection:MySQLConnectionString"];
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
             //Dependncy Injection
+
             services.AddScoped<IComputadorService, ComputadorServiceImplementation>();
 
 

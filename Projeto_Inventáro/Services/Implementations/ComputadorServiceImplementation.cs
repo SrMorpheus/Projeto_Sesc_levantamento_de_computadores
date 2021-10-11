@@ -1,4 +1,5 @@
 ﻿using Projeto_Inventáro.Models;
+using Projeto_Inventáro.Models.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,18 @@ namespace Projeto_Inventáro.Services.Implementations
     public class ComputadorServiceImplementation : IComputadorService
     {
 
-        private volatile int Count;
+
+
+        
+        private  MySQLContext  _context;
+
+
+
+        public ComputadorServiceImplementation( MySQLContext context)
+        {
+            _context = context;
+
+        }
         public Computador Create(Computador computador)
         {
 
@@ -28,63 +40,20 @@ namespace Projeto_Inventáro.Services.Implementations
         public List<Computador> FindAll()
         {
 
-            List<Computador> Computadors =  new List<Computador>();
-
-            for(int i = 0; i < 8; i++)
-            {
-
-
-                Computador computador = MockComputador(i);
-
-                Computadors.Add(computador);
-
-            }
-
-
-            return Computadors;
+            return _context.Computadors.ToList();
 
         }
 
-        private Computador MockComputador(int i)
-        {
+       
 
-            return new Computador
-            {
-                IdComputador = IncrementAndGet(),
 
-                NomeComptador = "BRUNO",
-
-                EnderecoIp = "190.120.2.115",
-
-                ModeloId = 1,
-
-                EquipamentoId = 1,
-
-                PatrimonioMonitor = 1266,
-
-                PatrimonioGabinete = 1958,
-
-                Ano = 2019,
-
-                Internet = true,
-
-                SetorId = 1
-
-            };
-
-            }
-
-        private int IncrementAndGet()
-        {
-            return Interlocked.Increment(ref Count);
-        }
 
         public Computador FindById(int id)
         {
 
             return new Computador
             {
-                IdComputador = IncrementAndGet(),
+                IdComputador = 1,
 
 
                 NomeComptador = "BRUNO",
