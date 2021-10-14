@@ -8,7 +8,9 @@ using Projeto_Inventáro.Models;
 
 namespace Projeto_Inventáro.Services
 {
-    interface IUsuarioServicecs
+   public interface IUsuarioServicecs
+  
+    
     {
 
 
@@ -18,7 +20,8 @@ namespace Projeto_Inventáro.Services
         Usuario FindById(int id);
 
         List<Usuario> FindAll();
-       Usuario Update(Usuario usuario);
+
+        Usuario Update(Usuario usuario);
 
         void Delete(int id);
 

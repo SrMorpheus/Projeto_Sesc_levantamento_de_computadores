@@ -22,9 +22,11 @@ namespace Projeto_Inventáro.Models
 
         [Required()]
         [Column("nome_computador")]
-        public string NomeComptador { get; set; }
-        
-      //  [Required()]
+        public string NomeComputador { get; set; }
+
+        //  [Required()]
+
+    
         public Modelo Modelos { get; set; }
 
         [Column("fk_modelo")]
