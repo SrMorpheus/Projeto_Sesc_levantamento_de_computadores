@@ -8,9 +8,9 @@ using Projeto_Inventáro.Models;
 
 namespace Projeto_Inventáro.Services
 {
-   public interface IUsuarioServicecs
-  
-    
+   public interface IUsuarioService
+
+
     {
 
 

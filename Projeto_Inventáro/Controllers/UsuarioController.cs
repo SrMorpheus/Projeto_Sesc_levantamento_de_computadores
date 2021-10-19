@@ -18,12 +18,12 @@ namespace Projeto_Inventáro.Controllers
 
         private readonly ILogger<UsuarioController> _logger;
 
-        private IUsuarioServicecs _usuarioServicecs;
+        private IUsuarioService _usuarioServicecs;
 
 
 
 
-        public UsuarioController(ILogger<UsuarioController> logger, IUsuarioServicecs usuarioServicecs)
+        public UsuarioController(ILogger<UsuarioController> logger, IUsuarioService usuarioServicecs)
         {
 
 

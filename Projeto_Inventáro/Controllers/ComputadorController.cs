@@ -19,7 +19,7 @@ namespace Projeto_Inventáro.Controllers
         private IComputadorService _computadorService;
 
 
-        public ComputadorController(ILogger<ComputadorController> logger , IComputadorService  computadorService  )
+        public ComputadorController(ILogger<ComputadorController> logger , IComputadorService computadorService  )
         {
             _logger = logger;
 
@@ -28,7 +28,7 @@ namespace Projeto_Inventáro.Controllers
         }
 
 
-        [HttpGet ]
+        [HttpGet] //listar todos computadores
 
         public IActionResult Get()
         {

@@ -1,5 +1,6 @@
 ﻿using Projeto_Inventáro.Models;
 using Projeto_Inventáro.Models.Context;
+using Projeto_Inventáro.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,36 +14,24 @@ namespace Projeto_Inventáro.Services.Implementations
 
 
 
-        
-        private  MySQLContext  _context;
+
+        private readonly IComputadorRepository _computadorRepository;
 
 
 
-        public ComputadorServiceImplementation( MySQLContext context)
+        public ComputadorServiceImplementation(IComputadorRepository computadorRepository)
         {
-            _context = context;
+
+            _computadorRepository = computadorRepository;
 
         }
         public Computador Create(Computador computador)
         {
 
-            try
-            {
-
-                _context.Add(computador);
-
-                _context.SaveChanges();
+          
 
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-
-            }
-
-
-            return computador;
+            return _computadorRepository.Create(computador);
 
 
         }
@@ -51,32 +40,14 @@ namespace Projeto_Inventáro.Services.Implementations
         {
 
 
-            var result = _context.Computadors.SingleOrDefault(M => M.IdComputador.Equals(id));
-
-            if(result != null)
-            {
-
-                try
-                {
-
-                    _context.Computadors.Remove(result);
-
-                    _context.SaveChanges();
-
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-            }
+            _computadorRepository.Delete(id);
 
         }
 
         public List<Computador> FindAll()
         {
 
-            return _context.Computadors.ToList();
+            return _computadorRepository.FindAll();
 
         }
 
@@ -88,53 +59,18 @@ namespace Projeto_Inventáro.Services.Implementations
         {
 
 
-            return _context.Computadors.SingleOrDefault(M => M.IdComputador.Equals(id));
+            return _computadorRepository.FindById(id);
 
         }
 
         public Computador Update(Computador computador)
         {
-            if (!Exists(computador.IdComputador)) return new Computador();
 
-
-            var result = _context.Computadors.SingleOrDefault(M => M.IdComputador.Equals(computador.IdComputador));
-
-
-            if (result != null)
-            {
-
-                try
-                {
-
-                    _context.Entry(result).CurrentValues.SetValues(computador);
-
-                    _context.SaveChanges();
-
-
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-
-                }
-
-
-
-            }
-
-
-
-
-            return computador;
+            return _computadorRepository.Update(computador);
 
 
         }
 
-        private bool Exists(int id)
-        {
-
-
-            return _context.Computadors.Any(M => M.IdComputador.Equals(id));
-    }
+   
     }
 }

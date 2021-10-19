@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Projeto_Inventáro.Services;
+using Projeto_Inventáro.Repository;
 
 namespace Projeto_Inventáro
 {
@@ -40,11 +41,15 @@ namespace Projeto_Inventáro
             //Dependncy Injection
 
             services.AddScoped<IComputadorService, ComputadorServiceImplementation>();
+            services.AddScoped<IComputadorRepository, ComputadorRepositoryImplementation>();
 
-            services.AddScoped<IUsuarioServicecs, UsuarioServiceImplementation>();
+
+            services.AddScoped<IUsuarioService, UsuarioServiceImplementation>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepositoryImplementation>();
 
 
-        
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
