@@ -38,6 +38,11 @@ namespace Projeto_Inventáro
             //DATABSE
             var connection = Configuration["MySQLConnection:MySQLConnectionString"];
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
+
+
+            //versionamento da api
+            services.AddApiVersioning();
+            
             //Dependncy Injection
 
             services.AddScoped<IComputadorService, ComputadorServiceImplementation>();

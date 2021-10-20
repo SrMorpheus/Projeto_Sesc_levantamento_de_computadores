@@ -1,4 +1,6 @@
-﻿using Projeto_Inventáro.Models;
+﻿using Projeto_Inventáro.Data.Converter.Implementation;
+using Projeto_Inventáro.Data.VO;
+using Projeto_Inventáro.Models;
 using Projeto_Inventáro.Models.Context;
 using Projeto_Inventáro.Repository;
 using System;
@@ -18,20 +20,27 @@ namespace Projeto_Inventáro.Services.Implementations
         private readonly IComputadorRepository _computadorRepository;
 
 
+        private readonly ComputadorConvertercs _converter;
+
+
 
         public ComputadorServiceImplementation(IComputadorRepository computadorRepository)
         {
 
             _computadorRepository = computadorRepository;
 
+            _converter = new ComputadorConvertercs();
+
         }
-        public Computador Create(Computador computador)
+        public ComputadorVO Create(ComputadorVO computador)
         {
 
-          
 
+            var computadorEntity = _converter.Parse(computador);
 
-            return _computadorRepository.Create(computador);
+            computadorEntity = _computadorRepository.Create(computadorEntity);
+
+            return _converter.Parse(computadorEntity);
 
 
         }
@@ -44,10 +53,10 @@ namespace Projeto_Inventáro.Services.Implementations
 
         }
 
-        public List<Computador> FindAll()
+        public List<ComputadorVO> FindAll()
         {
 
-            return _computadorRepository.FindAll();
+            return _converter.Parse( _computadorRepository.FindAll());
 
         }
 
@@ -55,22 +64,27 @@ namespace Projeto_Inventáro.Services.Implementations
 
 
 
-        public Computador FindById(int id)
+        public ComputadorVO FindById(int id)
         {
 
 
-            return _computadorRepository.FindById(id);
+            return _converter.Parse (_computadorRepository.FindById(id));
 
         }
 
-        public Computador Update(Computador computador)
+        public ComputadorVO Update(ComputadorVO computador)
         {
 
-            return _computadorRepository.Update(computador);
+            var computadorEntity = _converter.Parse(computador);
+
+            computadorEntity = _computadorRepository.Update(computadorEntity);
+
+            return _converter.Parse(computadorEntity);
+
 
 
         }
 
-   
+
     }
 }

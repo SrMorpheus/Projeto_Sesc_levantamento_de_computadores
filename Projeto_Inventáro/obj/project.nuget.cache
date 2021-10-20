@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tuBciaA3IjGz1iuNq/i2bQeFwf4hGmhOYchlu3xVRiQ5GhiSUjcwHZM+TSg9SFLeTTzcvl2W7T9WbethyZaFSg==",
+  "dgSpecHash": "lpodcQSbqo0GbG+uBqLF8ZpDiK/kPF/rQZeHarX55tnT/kYRwZpIP88PCB2BbOeVVxg+b+IRYD8Hj5cgCwZSkA==",
   "success": true,
   "projectFilePath": "C:\\Users\\bbarros\\Desktop\\Projeto Sesc\\Projeto_Inventáro\\Projeto_Inventáro\\Projeto_Inventáro.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\bbarros\\.nuget\\packages\\k4os.compression.lz4\\1.1.11\\k4os.compression.lz4.1.1.11.nupkg.sha512",
     "C:\\Users\\bbarros\\.nuget\\packages\\k4os.compression.lz4.streams\\1.1.11\\k4os.compression.lz4.streams.1.1.11.nupkg.sha512",
     "C:\\Users\\bbarros\\.nuget\\packages\\k4os.hash.xxhash\\1.0.6\\k4os.hash.xxhash.1.0.6.nupkg.sha512",
+    "C:\\Users\\bbarros\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.0.0\\microsoft.aspnetcore.mvc.versioning.5.0.0.nupkg.sha512",
     "C:\\Users\\bbarros\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\bbarros\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.10\\microsoft.entityframeworkcore.5.0.10.nupkg.sha512",
     "C:\\Users\\bbarros\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.10\\microsoft.entityframeworkcore.abstractions.5.0.10.nupkg.sha512",

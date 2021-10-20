@@ -1,4 +1,5 @@
-﻿using Projeto_Inventáro.Models;
+﻿using Projeto_Inventáro.Data.VO;
+using Projeto_Inventáro.Models;
 using System.Collections.Generic;
 
 namespace Projeto_Inventáro.Services.Implementations
@@ -7,13 +8,13 @@ namespace Projeto_Inventáro.Services.Implementations
     {
 
 
-        Computador Create(Computador computador);
+        ComputadorVO Create(ComputadorVO computador);
 
-        Computador FindById(int id);
+        ComputadorVO FindById(int id);
 
-        List<Computador> FindAll();
+        List<ComputadorVO> FindAll();
 
-        Computador Update(Computador computador);
+        ComputadorVO Update(ComputadorVO computador);
 
         void Delete(int id);
 

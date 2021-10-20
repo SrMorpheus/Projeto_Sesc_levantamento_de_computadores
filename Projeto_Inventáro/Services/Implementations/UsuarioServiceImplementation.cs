@@ -1,4 +1,5 @@
-﻿using Projeto_Inventáro.Models;
+﻿using Projeto_Inventáro.Data.Converter.Implementation;
+using Projeto_Inventáro.Models;
 using Projeto_Inventáro.Models.Context;
 using Projeto_Inventáro.Repository;
 using System;
@@ -13,20 +14,32 @@ namespace Projeto_Inventáro.Services.Implementations
 
         private readonly IUsuarioRepository _usuarioRepository;
 
+        private readonly UsuarioConverter _converter;
+
+
+
 
         public UsuarioServiceImplementation(IUsuarioRepository usuarioRepository)
         {
 
             _usuarioRepository = usuarioRepository;
 
+
+            _converter = new UsuarioConverter();
         }
 
 
-        public Usuario Create(Usuario usuario)
+        public UsuarioVO Create(UsuarioVO usuario)
         {
 
-            
-           return _usuarioRepository.Create(usuario);
+
+            var usuarioEntity = _converter.Parse(usuario);
+
+            usuarioEntity = _usuarioRepository.Create(usuarioEntity);
+
+
+            return _converter.Parse(usuarioEntity);
+
         }
 
         public void Delete(int id)
@@ -39,31 +52,35 @@ namespace Projeto_Inventáro.Services.Implementations
 
         }
 
-        public List<Usuario> FindAll()
+        public List<UsuarioVO> FindAll()
 
             
         {
 
 
-            return _usuarioRepository.FindAll();
+            return _converter.Parse(_usuarioRepository.FindAll());
 
 
 
         }
 
-        public Usuario FindById(int id)
+        public UsuarioVO FindById(int id)
         {
 
 
 
-            return _usuarioRepository.FindById(id);
+            return _converter.Parse( _usuarioRepository.FindById(id));
 
         }
 
-        public Usuario Update(Usuario usuario)
+        public UsuarioVO Update(UsuarioVO usuario)
         {
+            var usuarioEntity = _converter.Parse(usuario);
 
-            return _usuarioRepository.Update(usuario);
+            usuarioEntity = _usuarioRepository.Update(usuarioEntity);
+
+
+            return _converter.Parse(usuarioEntity);
         }
 
      

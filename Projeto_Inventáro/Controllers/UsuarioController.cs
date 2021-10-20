@@ -11,7 +11,9 @@ using System.Threading.Tasks;
 
 namespace Projeto_Inventáro.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion ("1")]
+    [Route("api/v{version:apiVersion}/[controller]/")]
+
     [ApiController]
     public class UsuarioController : ControllerBase
     {
@@ -73,7 +75,7 @@ namespace Projeto_Inventáro.Controllers
         [HttpPost] //create 
 
 
-        public IActionResult Post([FromBody] Usuario usuario)
+        public IActionResult Post([FromBody] UsuarioVO usuario)
         {
 
             if (usuario == null) return BadRequest();
@@ -86,7 +88,7 @@ namespace Projeto_Inventáro.Controllers
 
         [HttpPut] //update
 
-        public IActionResult Put([FromBody] Usuario usuario)
+        public IActionResult Put([FromBody] UsuarioVO usuario)
         {
 
             if (usuario == null) return BadRequest();

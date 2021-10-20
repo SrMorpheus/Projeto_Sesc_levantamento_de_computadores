@@ -15,13 +15,13 @@ namespace Projeto_Inventáro.Services
 
 
 
-        Usuario  Create(Usuario usuario);
+        UsuarioVO Create(UsuarioVO usuario);
 
-        Usuario FindById(int id);
+        UsuarioVO FindById(int id);
 
-        List<Usuario> FindAll();
+        List<UsuarioVO> FindAll();
 
-        Usuario Update(Usuario usuario);
+        UsuarioVO Update(UsuarioVO usuario);
 
         void Delete(int id);
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Projeto_Inventáro.Data.VO;
 using Projeto_Inventáro.Models;
 using Projeto_Inventáro.Services.Implementations;
 using System;
@@ -10,7 +11,9 @@ using System.Threading.Tasks;
 
 namespace Projeto_Inventáro.Controllers
 {
-    [Route("api/[controller]")]
+
+    [ApiVersion("1")]
+    [Route("api/v{version:apiVersion}/[controller]/")]
     [ApiController]
     public class ComputadorController : ControllerBase
     {
@@ -61,7 +64,7 @@ namespace Projeto_Inventáro.Controllers
 
         [HttpPost] //CREATE
 
-        public IActionResult Post([FromBody] Computador computador)
+        public IActionResult Post([FromBody] ComputadorVO computador)
         {
             if (computador == null) return BadRequest();
 
@@ -72,7 +75,7 @@ namespace Projeto_Inventáro.Controllers
 
         [HttpPut] //UPDATE
 
-        public IActionResult Put([FromBody] Computador computador)
+        public IActionResult Put([FromBody] ComputadorVO computador)
         {
             if (computador == null) return BadRequest();
 
