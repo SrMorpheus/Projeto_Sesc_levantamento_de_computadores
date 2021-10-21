@@ -8,9 +8,25 @@ using System.Threading.Tasks;
 
 namespace Projeto_Inventáro.Data.Converter.Implementation
 {
-    public class ComputadorConvertercs : IComputador<ComputadorVO, Computador>, IComputador<Computador, ComputadorVO>
+    public class ComputadorConverter : IComputador<ComputadorVO, Computador>, IComputador<Computador, ComputadorVO>
     
     {
+        private readonly SetorConverter _setorConverter;
+
+        private readonly EquipamentoConverter _equipamentoConverter;
+
+        private readonly ModeloConverter _modeloConverter;
+
+        public ComputadorConverter()
+        {
+            _setorConverter = new SetorConverter();
+
+            _equipamentoConverter = new EquipamentoConverter();
+
+            _modeloConverter = new ModeloConverter();
+
+        }
+
         public Computador Parse(ComputadorVO origin)
         {
 
@@ -21,11 +37,11 @@ namespace Projeto_Inventáro.Data.Converter.Implementation
 
                 NomeComputador = origin.NomeComputador,
 
-                Modelos = origin.Modelos,
+                Modelos = _modeloConverter.Parse (origin.ModelosVO),
 
                 ModeloId = origin.ModeloId,
 
-                Equipamentos = origin.Equipamentos,
+                Equipamentos = _equipamentoConverter.Parse(origin.EquipamentosVO),
 
                 EquipamentoId = origin.EquipamentoId,
 
@@ -39,7 +55,7 @@ namespace Projeto_Inventáro.Data.Converter.Implementation
 
                 Internet = origin.Internet,
 
-                Setores = origin.Setores,
+                Setores = _setorConverter.Parse(origin.SetoresVO),
 
                SetorId = origin.SetorId
 
@@ -60,11 +76,11 @@ namespace Projeto_Inventáro.Data.Converter.Implementation
 
                 NomeComputador = origin.NomeComputador,
 
-                Modelos = origin.Modelos,
+                ModelosVO = _modeloConverter.Parse( origin.Modelos),
 
                 ModeloId = origin.ModeloId,
 
-                Equipamentos = origin.Equipamentos,
+                EquipamentosVO = _equipamentoConverter.Parse( origin.Equipamentos),
 
                 EquipamentoId = origin.EquipamentoId,
 
@@ -78,7 +94,7 @@ namespace Projeto_Inventáro.Data.Converter.Implementation
 
                 Internet = origin.Internet,
 
-                Setores = origin.Setores,
+                SetoresVO = _setorConverter.Parse( origin.Setores),
 
                 SetorId = origin.SetorId
 

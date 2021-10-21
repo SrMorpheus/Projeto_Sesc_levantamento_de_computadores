@@ -20,7 +20,7 @@ namespace Projeto_Inventáro.Services.Implementations
         private readonly IComputadorRepository _computadorRepository;
 
 
-        private readonly ComputadorConvertercs _converter;
+        private readonly ComputadorConverter _converter;
 
 
 
@@ -29,7 +29,7 @@ namespace Projeto_Inventáro.Services.Implementations
 
             _computadorRepository = computadorRepository;
 
-            _converter = new ComputadorConvertercs();
+            _converter = new ComputadorConverter();
 
         }
         public ComputadorVO Create(ComputadorVO computador)
@@ -44,6 +44,18 @@ namespace Projeto_Inventáro.Services.Implementations
 
 
         }
+        public ComputadorVO Update(ComputadorVO computador)
+        {
+
+            var computadorEntity = _converter.Parse(computador);
+
+            computadorEntity = _computadorRepository.Update(computadorEntity);
+
+            return _converter.Parse(computadorEntity);
+
+
+
+        }
 
         public void Delete(int id)
         {
@@ -52,6 +64,8 @@ namespace Projeto_Inventáro.Services.Implementations
             _computadorRepository.Delete(id);
 
         }
+
+      
 
         public List<ComputadorVO> FindAll()
         {
@@ -72,16 +86,24 @@ namespace Projeto_Inventáro.Services.Implementations
 
         }
 
-        public ComputadorVO Update(ComputadorVO computador)
+        public List<ComputadorVO> ModeloPesquisar(int id)
+
+
+        {
+            return _converter.Parse(_computadorRepository.ModeloPesquisar(id));
+
+
+        }
+
+        public List<ComputadorVO> SetorPesquisar(int id)
         {
 
-            var computadorEntity = _converter.Parse(computador);
+            return _converter.Parse(_computadorRepository.SetorPesquisar(id));
+        }
 
-            computadorEntity = _computadorRepository.Update(computadorEntity);
-
-            return _converter.Parse(computadorEntity);
-
-
+        public List<ComputadorVO> EquipamentoPesquisar(int id)
+        {
+            return _converter.Parse(_computadorRepository.EquipamentoPesquisar(id));
 
         }
 

@@ -16,6 +16,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Projeto_Inventáro.Services;
 using Projeto_Inventáro.Repository;
+using Projeto_Inventáro.Repository.Generic;
 
 namespace Projeto_Inventáro
 {
@@ -45,13 +46,14 @@ namespace Projeto_Inventáro
             
             //Dependncy Injection
 
+
+
             services.AddScoped<IComputadorService, ComputadorServiceImplementation>();
             services.AddScoped<IComputadorRepository, ComputadorRepositoryImplementation>();
 
 
             services.AddScoped<IUsuarioService, UsuarioServiceImplementation>();
             services.AddScoped<IUsuarioRepository, UsuarioRepositoryImplementation>();
-
 
 
 

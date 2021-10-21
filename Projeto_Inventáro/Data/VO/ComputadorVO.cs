@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Projeto_Inventáro.Data.VO
@@ -15,51 +16,63 @@ namespace Projeto_Inventáro.Data.VO
     {
 
 
-   
+         [JsonPropertyName("Code")]
         public int IdComputador { get; set; }
 
-
-      
+        [Required]
+        [JsonPropertyName("Nome")]
         public string NomeComputador { get; set; }
 
-        //  [Required()]
 
-    
-        public Modelo Modelos { get; set; }
+        [JsonPropertyName("Modelo")]
+        public ModeloVO ModelosVO { get; set; }
 
-    
+        [Required]
+        [JsonPropertyName("Code Modelo")]
         public int ModeloId { get; set; }
 
-        //[Required()]
-        public Equipamento Equipamentos { get; set; }
 
-   
+        [JsonPropertyName("Equipamento")]
+
+        public EquipamentoVO EquipamentosVO { get; set; }
+
+        
+        [Required]
+        [JsonPropertyName("Code Equipamento")]
         public int EquipamentoId { get; set; }
 
-        [Required()]
 
+        [Required]
+        [JsonPropertyName("IP")]
         public string EnderecoIp { get; set; }
 
+
+        [JsonPropertyName("Patrimônio do  Monitor")]
         public int PatrimonioMonitor { get; set; }
 
-        [Required()]
-       
+
+        [Required]
+        [JsonPropertyName("Patrimônio do Gabinete")]
         public int PatrimonioGabinete { get; set; }
 
-        [Required()]
-       
+
+        [Required]
+        [JsonPropertyName("Ano de Aquisição")]
         public int Ano { get; set; }
 
-      
+
+
+        [JsonPropertyName("Liberação da Internet")]
         public bool Internet  {get; set ;}
 
 
-
-
+        [Required]
+        [JsonPropertyName("Code Setor")]
         public int SetorId { get; set; }
 
-       // [Required()]
-        public Setor Setores { get; set; }
+
+        [JsonPropertyName("Setor")]
+        public SetorVO SetoresVO { get; set; }
 
 
 

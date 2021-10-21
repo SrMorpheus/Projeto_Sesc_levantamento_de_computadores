@@ -9,6 +9,22 @@ namespace Projeto_Inventáro.Data.Converter.Implementation
 {
     public class UsuarioConverter : IUsuario<UsuarioVO, Usuario>, IUsuario<Usuario, UsuarioVO>
     {
+
+
+        private readonly SetorConverter _setorConverter;
+
+        private readonly ComputadorConverter _computadorConverter;
+
+
+        public UsuarioConverter()
+        {
+
+            _setorConverter = new SetorConverter();
+
+            _computadorConverter = new ComputadorConverter();
+
+        }
+
         public UsuarioVO Parse(Usuario origin)
         {
 
@@ -23,11 +39,11 @@ namespace Projeto_Inventáro.Data.Converter.Implementation
 
                NomeUsuario = origin.NomeUsuario,
 
-               Setores = origin.Setores,
+               SetoresVO = _setorConverter.Parse( origin.Setores),
 
                SetorId = origin.SetorId,
 
-               Computadores = origin.Computadores,
+               ComputadoresVO = _computadorConverter.Parse( origin.Computadores),
 
                ComputadorId = origin.ComputadorId
 
@@ -50,11 +66,11 @@ namespace Projeto_Inventáro.Data.Converter.Implementation
 
                NomeUsuario = origin.NomeUsuario,
 
-               Setores = origin.Setores,
+               Setores = _setorConverter.Parse( origin.SetoresVO),
 
                SetorId = origin.SetorId,
 
-               Computadores = origin.Computadores,
+               Computadores = _computadorConverter.Parse( origin.ComputadoresVO),
 
 
                ComputadorId = origin.ComputadorId

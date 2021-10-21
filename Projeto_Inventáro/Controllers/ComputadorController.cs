@@ -36,7 +36,15 @@ namespace Projeto_Inventáro.Controllers
         public IActionResult Get()
         {
 
-            return Ok(_computadorService.FindAll());
+            var computador = _computadorService.FindAll();
+
+
+                 if (!computador.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(computador);
 
 
 
@@ -60,6 +68,70 @@ namespace Projeto_Inventáro.Controllers
             return Ok(computador);
 
         }
+
+
+        //Pesquisar pelo modelo
+
+        [HttpGet("Modelo/{id}")]
+
+        public IActionResult GetModelo(int id)
+        {
+
+            var computador = _computadorService.ModeloPesquisar(id);
+
+
+            if (!computador.Any())
+            {
+                return NotFound();
+            }
+
+
+            return Ok(computador);
+
+        }
+
+        //Pesquisar pelo Setor
+
+        [HttpGet("Setor/{id}")]
+
+        public IActionResult GetSetor(int id)
+        {
+
+            var computador = _computadorService.SetorPesquisar(id);
+
+           
+            if (!computador.Any())
+            {
+                return NotFound();
+            }
+
+
+            return Ok(computador);
+
+        }
+
+        //Pesquisar pelo equipamento
+
+        [HttpGet("Equipamento/{id}")]
+
+        public IActionResult GetEquipamento(int id)
+        {
+
+            var computador = _computadorService.EquipamentoPesquisar(id);
+
+
+            if (!computador.Any())
+            {
+                return NotFound();
+            }
+
+
+            return Ok(computador);
+
+        }
+
+
+
 
 
         [HttpPost] //CREATE

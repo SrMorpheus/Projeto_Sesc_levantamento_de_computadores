@@ -19,6 +19,12 @@ namespace Projeto_Inventáro.Repository
 
         bool Exists(int id);
 
+        List<Computador> EquipamentoPesquisar(int id);
+
+        List<Computador> ModeloPesquisar(int id);
+
+        List<Computador> SetorPesquisar(int id);
+
 
 
 

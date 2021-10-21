@@ -1,4 +1,5 @@
-﻿using Projeto_Inventáro.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Projeto_Inventáro.Models;
 using Projeto_Inventáro.Models.Context;
 using Projeto_Inventáro.Repository;
 using System;
@@ -77,7 +78,11 @@ namespace Projeto_Inventáro.Repository
         public List<Computador> FindAll()
         {
 
-            return _context.Computadors.ToList();
+            var computador = _context.Computadors.Include(E => E.Equipamentos).Include(S => S.Setores).Include(M => M.Modelos);
+
+
+
+            return computador.ToList();
 
         }
 
@@ -88,8 +93,12 @@ namespace Projeto_Inventáro.Repository
         public Computador FindById(int id)
         {
 
+            var computador = _context.Computadors.Include(E => E.Equipamentos).Include(S => S.Setores).Include(M => M.Modelos).SingleOrDefault(M => M.IdComputador.Equals(id));
+            ;
 
-            return _context.Computadors.SingleOrDefault(M => M.IdComputador.Equals(id));
+
+
+            return computador;
 
         }
 
@@ -137,5 +146,31 @@ namespace Projeto_Inventáro.Repository
 
             return _context.Computadors.Any(M => M.IdComputador.Equals(id));
     }
+
+        public List<Computador> EquipamentoPesquisar(int id)
+        {
+
+            var computador = _context.Computadors.Include(E => E.Equipamentos).Include(S => S.Setores).Include(M => M.Modelos).AsNoTracking().Where(E => E.EquipamentoId == id);
+
+
+                return computador.ToList();
+        }
+
+        public List<Computador> ModeloPesquisar(int id)
+        {
+
+            var computador = _context.Computadors.Include(E => E.Equipamentos).Include(S => S.Setores).Include(M => M.Modelos).AsNoTracking().Where(M => M.ModeloId == id);
+
+            return computador.ToList();
+
+        }
+
+        public List<Computador> SetorPesquisar(int id )
+        {
+
+            var computador = _context.Computadors.Include(E => E.Equipamentos).Include(S => S.Setores).Include(M => M.Modelos).AsNoTracking().Where(S => S.SetorId == id);
+
+            return computador.ToList();
+        }
     }
 }

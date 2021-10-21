@@ -72,6 +72,53 @@ namespace Projeto_Inventáro.Controllers
         }
 
 
+        //Pesquisar pelo Setor
+
+        [HttpGet("Setor/{id}")]
+
+        public IActionResult GetSetor(int id)
+        {
+
+            var usuario = _usuarioServicecs.SetorPesquisar(id);
+
+
+            if (!usuario.Any())
+            {
+                return NotFound();
+            }
+
+
+            return Ok(usuario);
+
+        }
+
+
+
+        //Pesquisar pelo computadores usados
+
+        [HttpGet("Computador/{id}")]
+
+        public IActionResult GetComputador(int id)
+        {
+
+            var usuario = _usuarioServicecs.ComputadorPesquisar(id);
+
+
+            if (!usuario.Any())
+            {
+                return NotFound();
+            }
+
+
+            return Ok(usuario);
+
+        }
+
+
+
+
+
+
         [HttpPost] //create 
 
 

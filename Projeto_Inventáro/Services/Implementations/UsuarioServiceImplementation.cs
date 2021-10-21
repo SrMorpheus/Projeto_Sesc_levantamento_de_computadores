@@ -28,7 +28,7 @@ namespace Projeto_Inventáro.Services.Implementations
             _converter = new UsuarioConverter();
         }
 
-
+   
         public UsuarioVO Create(UsuarioVO usuario)
         {
 
@@ -73,8 +73,24 @@ namespace Projeto_Inventáro.Services.Implementations
 
         }
 
+        public List<UsuarioVO> SetorPesquisar(int id)
+        {
+
+            return _converter.Parse(_usuarioRepository.SetorPesquisar(id));
+        
+        }
+        public List<UsuarioVO> ComputadorPesquisar(int id)
+        {
+
+            return _converter.Parse(_usuarioRepository.ComputadorPesquisar(id));
+
+        }
+
+
         public UsuarioVO Update(UsuarioVO usuario)
         {
+
+
             var usuarioEntity = _converter.Parse(usuario);
 
             usuarioEntity = _usuarioRepository.Update(usuarioEntity);

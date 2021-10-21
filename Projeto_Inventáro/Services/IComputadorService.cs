@@ -18,7 +18,11 @@ namespace Projeto_Inventáro.Services.Implementations
 
         void Delete(int id);
 
+        List<ComputadorVO> EquipamentoPesquisar(int id);
 
+        List<ComputadorVO> ModeloPesquisar(int id);
+
+        List<ComputadorVO> SetorPesquisar(int id);
 
 
 

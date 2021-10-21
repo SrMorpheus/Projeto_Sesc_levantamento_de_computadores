@@ -1,4 +1,5 @@
-﻿using Projeto_Inventáro.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Projeto_Inventáro.Models;
 using Projeto_Inventáro.Models.Context;
 using Projeto_Inventáro.Repository;
 using System;
@@ -73,9 +74,10 @@ namespace Projeto_Inventáro.Repository
 
             
         {
+            var usuario = _context.Usuarios.Include(C => C.Computadores).Include(S => S.Setores).Include(E => E.Computadores.Equipamentos).Include(S => S.Computadores.Setores).Include(M => M.Computadores.Modelos);
            
            
-            return _context.Usuarios.ToList();
+            return usuario.ToList();
 
             
         }
@@ -83,9 +85,10 @@ namespace Projeto_Inventáro.Repository
         public Usuario FindById(int id)
         {
 
+            var usuario = _context.Usuarios.Include(C => C.Computadores).Include(S => S.Setores).Include(E => E.Computadores.Equipamentos).Include(S => S.Computadores.Setores).Include(M => M.Computadores.Modelos).SingleOrDefault(U => U.IdUsuario.Equals(id));
 
 
-            return _context.Usuarios.SingleOrDefault(U => U.IdUsuario.Equals(id));
+            return usuario;
 
 
         }
@@ -126,6 +129,22 @@ namespace Projeto_Inventáro.Repository
 
 
             return _context.Usuarios.Any(U => U.IdUsuario.Equals(id));
+        }
+
+        public List<Usuario> SetorPesquisar(int id)
+        {
+
+            var usuario = _context.Usuarios.Include(C => C.Computadores).Include(S => S.Setores).Include(E => E.Computadores.Equipamentos).Include(S => S.Computadores.Setores).Include(M => M.Computadores.Modelos).AsNoTracking().Where( S => S.SetorId == id);
+
+            return usuario.ToList();
+
+        }
+
+        public List<Usuario> ComputadorPesquisar(int id)
+        {
+            var usuario = _context.Usuarios.Include(C => C.Computadores).Include(S => S.Setores).Include(E => E.Computadores.Equipamentos).Include(S => S.Computadores.Setores).Include(M => M.Computadores.Modelos).AsNoTracking().Where(C => C.ComputadorId == id);
+
+            return usuario.ToList();
         }
     }
 }

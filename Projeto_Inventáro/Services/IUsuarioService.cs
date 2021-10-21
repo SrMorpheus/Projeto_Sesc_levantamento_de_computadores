@@ -25,6 +25,10 @@ namespace Projeto_Inventáro.Services
 
         void Delete(int id);
 
+        List<UsuarioVO> SetorPesquisar(int id);
+
+        List<UsuarioVO> ComputadorPesquisar(int id);
+
 
 
 

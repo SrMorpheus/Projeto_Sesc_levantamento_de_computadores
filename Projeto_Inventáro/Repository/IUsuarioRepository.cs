@@ -20,6 +20,11 @@ namespace Projeto_Inventáro.Repository
         Usuario FindById(int id);
 
         List<Usuario> FindAll();
+        List<Usuario> SetorPesquisar(int id);
+
+        List<Usuario> ComputadorPesquisar(int id);
+
+
 
         Usuario Update(Usuario usuario);
 
