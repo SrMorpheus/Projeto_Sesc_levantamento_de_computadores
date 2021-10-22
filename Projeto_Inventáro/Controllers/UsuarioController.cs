@@ -40,9 +40,18 @@ namespace Projeto_Inventáro.Controllers
         public IActionResult Get()
         {
 
-  
+            var usuario = _usuarioServicecs.FindAll();
 
-            return Ok(_usuarioServicecs.FindAll());
+
+            if (!usuario.Any())
+            {
+                return NotFound();
+            }
+
+
+            return Ok(usuario);
+
+        
 
             
 

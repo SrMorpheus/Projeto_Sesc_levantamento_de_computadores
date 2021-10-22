@@ -60,8 +60,10 @@ namespace Projeto_Inventáro.Models
         [Column("fk_setor")]
         public int SetorId { get; set; }
 
-       // [Required()]
         public Setor Setores { get; set; }
+
+
+        public IList<Usuario> Usuarios { get; } = new List<Usuario>();
 
 
 

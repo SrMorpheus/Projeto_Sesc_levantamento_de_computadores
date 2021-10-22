@@ -53,13 +53,18 @@ namespace Projeto_Inventáro.Repository
         {
 
 
-            var result = _context.Computadors.SingleOrDefault(M => M.IdComputador.Equals(id));
+            var result = _context.Computadors.OrderBy(e => e.NomeComputador).Include(e => e.Usuarios).SingleOrDefault(M => M.IdComputador.Equals(id));
 
             if(result != null)
             {
 
+                
+
                 try
                 {
+                 
+                    
+
 
                     _context.Computadors.Remove(result);
 
