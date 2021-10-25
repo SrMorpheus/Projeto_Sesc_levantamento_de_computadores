@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Projeto_Inventáro.Services;
 using Projeto_Inventáro.Repository;
 using Projeto_Inventáro.Repository.Generic;
+using Projeto_Inventáro.Repository.Implementations;
 
 namespace Projeto_Inventáro
 {
@@ -44,16 +45,26 @@ namespace Projeto_Inventáro
             //versionamento da api
             services.AddApiVersioning();
             
+
             //Dependncy Injection
-
-
-
             services.AddScoped<IComputadorService, ComputadorServiceImplementation>();
             services.AddScoped<IComputadorRepository, ComputadorRepositoryImplementation>();
 
 
             services.AddScoped<IUsuarioService, UsuarioServiceImplementation>();
             services.AddScoped<IUsuarioRepository, UsuarioRepositoryImplementation>();
+
+
+            services.AddScoped<ISetorService,  SetorServiceImplementation>();
+            services.AddScoped<ISetorRepository, SetorRepositoryImplementation > ();
+
+
+            services.AddScoped<IModeloService, ModeloServiceImplementation>();
+            services.AddScoped<IModeloRepositorycs, ModeloRepositoryImplementation>();
+
+            services.AddScoped<IEquipamentoService, EquipamentoServiceImplementation>();
+            services.AddScoped<IEquipamentoRepository, EquipamentoRepositoryImplementationcs>();
+
 
 
 
