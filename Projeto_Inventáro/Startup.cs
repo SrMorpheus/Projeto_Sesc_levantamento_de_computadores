@@ -18,6 +18,7 @@ using Projeto_Inventáro.Services;
 using Projeto_Inventáro.Repository;
 using Projeto_Inventáro.Repository.Generic;
 using Projeto_Inventáro.Repository.Implementations;
+using Microsoft.Net.Http.Headers;
 
 namespace Projeto_Inventáro
 {
@@ -42,9 +43,30 @@ namespace Projeto_Inventáro
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
 
 
+
+            services.AddMvc(options =>
+            {
+                options.RespectBrowserAcceptHeader = true;
+
+                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("application/xml"));
+
+                options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
+
+
+
+
+            })
+                .AddXmlSerializerFormatters();
+
+
+
+
             //versionamento da api
             services.AddApiVersioning();
             
+
+
+
 
             //Dependncy Injection
             services.AddScoped<IComputadorService, ComputadorServiceImplementation>();
