@@ -1,4 +1,6 @@
-﻿using Projeto_Inventáro.Models;
+﻿using Projeto_Inventáro.Hypermedia;
+using Projeto_Inventáro.Hypermedia.Abstract;
+using Projeto_Inventáro.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +14,7 @@ namespace Projeto_Inventáro.Data.VO
 
 
 
-    public class ComputadorVO
+    public class ComputadorVO : ISupportHyperMedia
     {
 
 
@@ -74,10 +76,6 @@ namespace Projeto_Inventáro.Data.VO
         [JsonPropertyName("Setor")]
         public SetorVO SetoresVO { get; set; }
 
-
-
-
-
-
+        public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
     }
 }

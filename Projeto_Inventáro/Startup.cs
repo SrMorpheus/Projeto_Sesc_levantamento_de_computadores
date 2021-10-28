@@ -19,6 +19,8 @@ using Projeto_Inventáro.Repository;
 using Projeto_Inventáro.Repository.Generic;
 using Projeto_Inventáro.Repository.Implementations;
 using Microsoft.Net.Http.Headers;
+using Projeto_Inventáro.Hypermedia.Filters;
+using Projeto_Inventáro.Hypermedia.Enricher;
 
 namespace Projeto_Inventáro
 {
@@ -43,7 +45,7 @@ namespace Projeto_Inventáro
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
 
 
-
+                     //conversão de xml e json
             services.AddMvc(options =>
             {
                 options.RespectBrowserAcceptHeader = true;
@@ -59,6 +61,12 @@ namespace Projeto_Inventáro
                 .AddXmlSerializerFormatters();
 
 
+            // Hateos
+            var filterOptions = new HypeMediaFilterOptions();
+
+            filterOptions.ResponseEnrichers.Add(new ComputadorEnricher());
+
+            services.AddSingleton(filterOptions);
 
 
             //versionamento da api
@@ -109,6 +117,9 @@ namespace Projeto_Inventáro
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapControllerRoute("DefaultApi", "{controller=values}/{id}");
+                
+                //endpoints.MapControllerRoute("DefaultApi", "{controller=values}/{id}");
             });
         }
     }

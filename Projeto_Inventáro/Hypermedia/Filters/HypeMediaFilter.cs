@@ -33,7 +33,7 @@ namespace Projeto_Inventáro.Hypermedia.Filters
         {
             if (context.Result is OkObjectResult objectResult)
             {
-                var enricher = _hypeMediaFilterOptions.responseEnrichers.FirstOrDefault(x => x.CanEnrich(context));
+                var enricher = _hypeMediaFilterOptions.ResponseEnrichers.FirstOrDefault(x => x.CanEnrich(context));
 
                 if (enricher != null) Task.FromResult(enricher.Enrich(context));
 

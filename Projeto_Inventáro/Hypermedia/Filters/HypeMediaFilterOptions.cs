@@ -10,7 +10,7 @@ namespace Projeto_Inventáro.Hypermedia.Filters
     {
 
 
-        public List<IResponseEnricher> responseEnrichers { get; set; } = new List<IResponseEnricher>();
+        public List<IResponseEnricher> ResponseEnrichers { get; set; } = new List<IResponseEnricher>();
 
 
     }

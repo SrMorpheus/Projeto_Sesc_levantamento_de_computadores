@@ -43,9 +43,10 @@ namespace Projeto_Inventáro.Hypermedia
                 if (objectResult.Value is T model)
                 {
 
-                    await ErinchModel(model, urlHelper);
+                    await  ErinchModel(model, urlHelper);
                 
-                }else if (objectResult.Value is List<T> collection)
+                }
+                else if (objectResult.Value is List<T> collection)
                 {
 
 

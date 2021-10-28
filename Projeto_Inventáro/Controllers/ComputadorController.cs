@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Projeto_Inventáro.Data.VO;
+using Projeto_Inventáro.Hypermedia.Filters;
 using Projeto_Inventáro.Models;
 using Projeto_Inventáro.Services.Implementations;
 using System;
@@ -33,7 +34,7 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpGet] //listar todos computadores
-
+        [TypeFilter(typeof(HypeMediaFilter))]
         public IActionResult Get()
         {
 
@@ -53,6 +54,9 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpGet("{id}")]
+        [TypeFilter(typeof(HypeMediaFilter))]
+
+
 
         public IActionResult Get( int id)
         {
@@ -74,6 +78,8 @@ namespace Projeto_Inventáro.Controllers
         //Pesquisar pelo modelo
 
         [HttpGet("Modelo/{id}")]
+        [TypeFilter(typeof(HypeMediaFilter))]
+
 
         public IActionResult GetModelo(int id)
         {
@@ -94,6 +100,8 @@ namespace Projeto_Inventáro.Controllers
         //Pesquisar pelo Setor
 
         [HttpGet("Setor/{id}")]
+        [TypeFilter(typeof(HypeMediaFilter))]
+
 
         public IActionResult GetSetor(int id)
         {
@@ -114,6 +122,8 @@ namespace Projeto_Inventáro.Controllers
         //Pesquisar pelo equipamento
 
         [HttpGet("Equipamento/{id}")]
+        [TypeFilter(typeof(HypeMediaFilter))]
+
 
         public IActionResult GetEquipamento(int id)
         {
@@ -136,6 +146,8 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpPost] //CREATE
+        [TypeFilter(typeof(HypeMediaFilter))]
+
 
         public IActionResult Post([FromBody] ComputadorVO computador)
         {
@@ -147,6 +159,7 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpPut] //UPDATE
+        [TypeFilter(typeof(HypeMediaFilter))]
 
         public IActionResult Put([FromBody] ComputadorVO computador)
         {
@@ -159,6 +172,7 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpDelete("{id}")] //Delete
+
 
         public IActionResult Delete(int id)
         {
