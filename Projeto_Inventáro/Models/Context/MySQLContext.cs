@@ -28,6 +28,8 @@ namespace Projeto_Inventáro.Models.Context
 
 
         public DbSet<Setor> Setors { get; set; }
+
+        public DbSet<Login> Logins { get; set; }
         
         
         

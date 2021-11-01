@@ -37,6 +37,12 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpGet] //lista os usuarios com sesu computadores 
+
+        [ProducesResponseType((200), Type = typeof(List<UsuarioVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
         public IActionResult Get()
         {
 
@@ -59,6 +65,12 @@ namespace Projeto_Inventáro.Controllers
         }
 
         [HttpGet("{id}")] //lista o usuario pelo id 
+
+
+        [ProducesResponseType((200), Type = typeof(UsuarioVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
 
         public IActionResult Get(int id)
         {
@@ -84,7 +96,10 @@ namespace Projeto_Inventáro.Controllers
         //Pesquisar pelo Setor
 
         [HttpGet("Setor/{id}")]
-
+        [ProducesResponseType((200), Type = typeof(List<UsuarioVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult GetSetor(int id)
         {
 
@@ -106,6 +121,10 @@ namespace Projeto_Inventáro.Controllers
         //Pesquisar pelo computadores usados
 
         [HttpGet("Computador/{id}")]
+        [ProducesResponseType((200), Type = typeof(List<UsuarioVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
 
         public IActionResult GetComputador(int id)
         {
@@ -130,6 +149,11 @@ namespace Projeto_Inventáro.Controllers
 
         [HttpPost] //create 
 
+        [ProducesResponseType((200), Type = typeof(UsuarioVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
 
         public IActionResult Post([FromBody] UsuarioVO usuario)
         {
@@ -143,6 +167,11 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpPut] //update
+        [ProducesResponseType((200), Type = typeof(UsuarioVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
 
         public IActionResult Put([FromBody] UsuarioVO usuario)
         {
@@ -157,6 +186,10 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpDelete("{id}")] //Delete
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
 
 
         public IActionResult Delete(int id)

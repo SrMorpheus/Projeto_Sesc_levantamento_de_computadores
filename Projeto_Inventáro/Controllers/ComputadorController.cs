@@ -34,6 +34,11 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpGet] //listar todos computadores
+        [ProducesResponseType( (200), Type = typeof(List<ComputadorVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
         [TypeFilter(typeof(HypeMediaFilter))]
         public IActionResult Get()
         {
@@ -54,9 +59,11 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpGet("{id}")]
+        [ProducesResponseType((200), Type = typeof(ComputadorVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HypeMediaFilter))]
-
-
 
         public IActionResult Get( int id)
         {
@@ -77,7 +84,12 @@ namespace Projeto_Inventáro.Controllers
 
         //Pesquisar pelo modelo
 
+
         [HttpGet("Modelo/{id}")]
+        [ProducesResponseType((200), Type = typeof(List<ComputadorVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HypeMediaFilter))]
 
 
@@ -100,6 +112,11 @@ namespace Projeto_Inventáro.Controllers
         //Pesquisar pelo Setor
 
         [HttpGet("Setor/{id}")]
+        [ProducesResponseType((200), Type = typeof(List<ComputadorVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
         [TypeFilter(typeof(HypeMediaFilter))]
 
 
@@ -122,6 +139,12 @@ namespace Projeto_Inventáro.Controllers
         //Pesquisar pelo equipamento
 
         [HttpGet("Equipamento/{id}")]
+
+        [ProducesResponseType((200), Type = typeof(List<ComputadorVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
         [TypeFilter(typeof(HypeMediaFilter))]
 
 
@@ -146,6 +169,10 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpPost] //CREATE
+        [ProducesResponseType((200), Type = typeof(ComputadorVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HypeMediaFilter))]
 
 
@@ -159,6 +186,10 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpPut] //UPDATE
+        [ProducesResponseType((200), Type = typeof(ComputadorVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HypeMediaFilter))]
 
         public IActionResult Put([FromBody] ComputadorVO computador)
@@ -172,7 +203,9 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpDelete("{id}")] //Delete
-
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
 
         public IActionResult Delete(int id)
         {

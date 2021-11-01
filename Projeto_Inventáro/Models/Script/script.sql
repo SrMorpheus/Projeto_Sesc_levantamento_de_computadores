@@ -1,6 +1,6 @@
-CREATE database CTI_TESTE03; 
+CREATE database CTI_TESTE04; 
 
-	USE  CTI_TESTE03;
+	USE  CTI_TESTE04;
 
 	/* criação da tabela setor com uma pk e a sigla de cada setor do sesc*/
 	CREATE TABLE `tbl_setor`(
@@ -40,6 +40,23 @@ CREATE database CTI_TESTE03;
     fk_setor INT(2)  NOT NULL 
     
     );
+    
+    
+    CREATE TABLE `tbl_login` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`user_name` VARCHAR(50) NOT NULL DEFAULT '0',
+	`password` VARCHAR(130) NOT NULL DEFAULT '0',
+	`full_name` VARCHAR(120) NOT NULL,
+	`refresh_token` VARCHAR(500) NULL DEFAULT '0',
+	`refresh_token_expiry_time` DATETIME NULL DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE `user_name` (`user_name`)
+)
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
+    
+    
+    
+    
    #ALTERAÇÃO DAS TABELAS ADICIONANDOS  AS  REFERENCIAS DE PK E FK
    
    ALTER TABLE `tbl_usuario` ADD CONSTRAINT Fk_setor
@@ -61,7 +78,10 @@ CREATE database CTI_TESTE03;
    
 
 
+   #inserindo na tabela login
    
+   INSERT INTO `tbl_login` (`user_name`, `password`, `full_name`, `refresh_token`, `refresh_token_expiry_time`) VALUES
+('bbarros', '24-0B-E5-18-FA-BD-27-24-DD-B6-F0-4E-EB-1D-A5-96-74-48-D7-E8-31-C0-8C-8F-A8-22-80-9F-74-C7-20-A9', 'Bruno Gonçalve Barros', 'h9lzVOoLlBoTbcQrh/e16/aIj+4p6C67lLdDbBRMsjE=', '2021-11-01 11:49:49');
     
     #inserindo os nomes dos setores na entidade setor
 	INSERT INTO `tbl_setor` (nome_setor) VALUES ('DR'),('DPS'),('DC'),('DPJUR'),('SECEX'),('CCM'),('CTI'),('CPO'),('SEATC'),('CGP'),('COB'),('SEALM'),('CAO'),('CCB'),('CTS'),('CCL'),('CCT'),('ESCOLA'),('CLA'),('SEAF'),('CSA'),('SENUT'),('MESA BRASIL'),('CMP'),('SEPAT'),('SETCO'); 

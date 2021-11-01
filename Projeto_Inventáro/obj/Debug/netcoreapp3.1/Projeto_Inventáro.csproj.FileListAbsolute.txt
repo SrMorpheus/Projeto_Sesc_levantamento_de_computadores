@@ -55,3 +55,7 @@ C:\Users\bbarros\Desktop\Projeto Sesc\Projeto_Inventáro\Projeto_Inventáro\obj\
 C:\Users\bbarros\Desktop\Projeto Sesc\Projeto_Inventáro\Projeto_Inventáro\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\bbarros\Desktop\Projeto Sesc\Projeto_Inventáro\Projeto_Inventáro\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
 C:\Users\bbarros\Desktop\Projeto Sesc\Projeto_Inventáro\Projeto_Inventáro\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\bbarros\Desktop\Projeto Sesc\Projeto_Inventáro\Projeto_Inventáro\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\bbarros\Desktop\Projeto Sesc\Projeto_Inventáro\Projeto_Inventáro\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\bbarros\Desktop\Projeto Sesc\Projeto_Inventáro\Projeto_Inventáro\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\bbarros\Desktop\Projeto Sesc\Projeto_Inventáro\Projeto_Inventáro\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll

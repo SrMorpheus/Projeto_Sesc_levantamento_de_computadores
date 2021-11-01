@@ -35,7 +35,12 @@ namespace Projeto_Inventáro.Controllers
         }
 
 
-        [HttpGet] //lista os usuarios com sesu computadores 
+        [HttpGet] //lista os modelos do computadores
+        [ProducesResponseType((200), Type = typeof(List<ModeloVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
         public IActionResult Get()
         {
 
@@ -57,7 +62,12 @@ namespace Projeto_Inventáro.Controllers
 
         }
 
-        [HttpGet("{id}")] //lista o usuario pelo id 
+        [HttpGet("{id}")] //lista o modelo pelo id
+        [ProducesResponseType((200), Type = typeof(ModeloVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
 
         public IActionResult Get(int id)
         {
@@ -85,6 +95,11 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpPost] //create 
+        [ProducesResponseType((200), Type = typeof(ModeloVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
 
 
         public IActionResult Post([FromBody] ModeloVO modelo)
@@ -99,6 +114,11 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpPut] //update
+        [ProducesResponseType((200), Type = typeof(ModeloVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
 
         public IActionResult Put([FromBody] ModeloVO modelo)
         {
@@ -113,6 +133,10 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpDelete("{id}")] //Delete
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
 
 
         public IActionResult Delete(int id)

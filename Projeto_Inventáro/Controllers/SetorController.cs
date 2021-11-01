@@ -38,6 +38,11 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpGet] //lista os setores 
+        [ProducesResponseType((200), Type = typeof(List<SetorVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
         public IActionResult Get()
         {
 
@@ -60,6 +65,11 @@ namespace Projeto_Inventáro.Controllers
         }
 
         [HttpGet("{id}")] //lista setor por id
+
+        [ProducesResponseType((200), Type = typeof(SetorVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
 
         public IActionResult Get(int id)
         {
@@ -87,7 +97,10 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpPost] //create 
-
+        [ProducesResponseType((200), Type = typeof(SetorVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
 
         public IActionResult Post([FromBody] SetorVO setor)
         {
@@ -101,6 +114,10 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpPut] //update
+        [ProducesResponseType((200), Type = typeof(SetorVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
 
         public IActionResult Put([FromBody] SetorVO setor)
         {
@@ -115,7 +132,9 @@ namespace Projeto_Inventáro.Controllers
 
 
         [HttpDelete("{id}")] //Delete
-
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
 
         public IActionResult Delete(int id)
         {
