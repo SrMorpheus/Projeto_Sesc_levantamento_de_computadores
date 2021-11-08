@@ -23,6 +23,12 @@ using Projeto_Inventáro.Hypermedia.Filters;
 using Projeto_Inventáro.Hypermedia.Enricher;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Rewrite;
+using Projeto_Inventáro.Configurations;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Projeto_Inventáro
 {
@@ -38,6 +44,79 @@ namespace Projeto_Inventáro
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers().AddNewtonsoftJson();
+
+
+            var tokenConfigurations = new TokenConfiguration();
+
+            new ConfigureFromConfigurationOptions<TokenConfiguration>(
+
+                Configuration.GetSection("TokenConfigurations")
+
+                ).Configure(tokenConfigurations);
+
+
+            services.AddSingleton(tokenConfigurations);
+
+            services.AddAuthentication(Options =>
+               {
+
+                   Options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+
+                   Options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+               })
+                .AddJwtBearer(Options =>
+                {
+
+                    Options.TokenValidationParameters = new TokenValidationParameters
+                    {
+
+                        ValidateIssuer = true,
+
+                        ValidateAudience = true,
+
+                        ValidateLifetime = true,
+
+                        ValidateIssuerSigningKey = true,
+
+                        ValidIssuer = tokenConfigurations.Issuer,
+
+                        ValidAudience = tokenConfigurations.Audience,
+
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfigurations.Secret))
+
+
+
+
+                    };
+
+
+
+                });
+
+            services.AddAuthorization(auth =>
+
+            {
+
+            auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                .RequireAuthenticatedUser().Build());
+
+
+
+                    
+
+
+            });
+            
+            
+            
+       
+            
+
+
+
             services.AddCors(options => options.AddDefaultPolicy(buider =>
 
             {
@@ -131,6 +210,12 @@ namespace Projeto_Inventáro
             services.AddScoped<IEquipamentoService, EquipamentoServiceImplementation>();
             services.AddScoped<IEquipamentoRepository, EquipamentoRepositoryImplementationcs>();
 
+            services.AddScoped<ILoginService, LoginServiceImplementation>();
+
+
+            services.AddTransient<ITokenService, TokenService>();
+
+            services.AddScoped<ILoginRepository, LoginRepository>();
 
 
 

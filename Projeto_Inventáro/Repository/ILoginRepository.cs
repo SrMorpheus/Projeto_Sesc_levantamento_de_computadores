@@ -12,5 +12,12 @@ namespace Projeto_Inventáro.Repository
 
         Login ValidateCredentials(LoginVO login);
 
+        Login ValidateCredentials(string username);
+
+        bool RevokeToken(string username);
+
+        Login RefreshLoginInfo(Login login);
+
+
     }
 }

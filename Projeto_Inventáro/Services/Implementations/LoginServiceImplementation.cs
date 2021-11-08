@@ -56,7 +56,9 @@ namespace Projeto_Inventáro.Services.Implementations
             user.RefreshToken = refreshToken;
             user.RefreshTokenExpiryTibe = DateTime.Now.AddDays(_configuration.DaysToExpiry);
 
-            
+            _repository.RefreshLoginInfo(user);
+
+
             DateTime createDate = DateTime.Now;
             DateTime expirationDate = createDate.AddMinutes(_configuration.Minutes);
 
@@ -77,6 +79,63 @@ namespace Projeto_Inventáro.Services.Implementations
                 );
 
 
+
+        }
+
+        public TokenVO ValidateCredentials(TokenVO token)
+        {
+
+            var accessToken = token.AccessToken;
+            var refreshToken = token.RefreshToken;
+
+
+
+            var pricncipal = _tokenService.GetPrincipalFromExpiredToken(accessToken);
+            var username = pricncipal.Identity.Name;
+
+
+            var user = _repository.ValidateCredentials(username);
+
+
+
+            if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTibe <= DateTime.Now) return null;
+
+
+            accessToken = _tokenService.GenerateAccessToken(pricncipal.Claims);
+
+            refreshToken = _tokenService.GenerateRefreshToken();
+
+            user.RefreshToken = refreshToken;
+
+
+            _repository.RefreshLoginInfo(user);
+
+
+            DateTime createDate = DateTime.Now;
+            DateTime expirationDate = createDate.AddMinutes(_configuration.Minutes);
+
+
+            return new TokenVO
+                (
+
+                true,
+
+                createDate.ToString(DATE_FORMAT),
+
+                expirationDate.ToString(DATE_FORMAT),
+
+                accessToken,
+
+                refreshToken
+
+                );
+
+        }
+
+        public bool RevokeToken(string username)
+        {
+
+            return _repository.RevokeToken(username);
 
         }
     }

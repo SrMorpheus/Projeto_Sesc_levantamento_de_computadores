@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Projeto_Inventáro.Models;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace Projeto_Inventáro.Controllers
 {
     [ApiVersion ("1")]
+    [Authorize("Bearer")]
     [Route("api/v{version:apiVersion}/[controller]/")]
 
     [ApiController]

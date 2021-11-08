@@ -19,6 +19,8 @@ namespace Projeto_Inventáro.Data.VO
         public string RefreshToken { get; set; }
 
 
+        
+
         public TokenVO(bool authenticated, string created, string expiration, string accessToken, string refreshToken)
         {
             Authenticated = authenticated;

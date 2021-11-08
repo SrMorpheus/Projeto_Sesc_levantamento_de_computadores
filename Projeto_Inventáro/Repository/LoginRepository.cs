@@ -78,7 +78,29 @@ namespace Projeto_Inventáro.Repository
 
         }
 
+        public Login ValidateCredentials(string username)
+        {
+
+            return _context.Logins.SingleOrDefault(u => (u.UserName == username));
 
 
+        }
+
+        public bool RevokeToken(string username)
+        {
+
+            var user = _context.Logins.SingleOrDefault(u => (u.UserName == username));
+
+            if (user is null) return false;
+
+            user.RefreshToken = null;
+
+            _context.SaveChanges();
+
+            return true;
+
+
+
+        }
     }
 }

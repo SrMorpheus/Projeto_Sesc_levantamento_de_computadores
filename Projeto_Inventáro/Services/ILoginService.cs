@@ -12,6 +12,10 @@ namespace Projeto_Inventáro.Services
 
         TokenVO ValidateCredentials(LoginVO login);
 
+        TokenVO ValidateCredentials(TokenVO token);
+
+        bool RevokeToken(string username);
+
 
 
     }
