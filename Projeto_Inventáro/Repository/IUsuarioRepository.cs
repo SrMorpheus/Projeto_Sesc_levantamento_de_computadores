@@ -24,6 +24,13 @@ namespace Projeto_Inventáro.Repository
 
         List<Usuario> ComputadorPesquisar(int id);
 
+        List<Usuario> FindByName(string nome);
+
+        List<Usuario> FindWithPagedSearch(string query);
+
+
+        int GetCount(string query);
+
 
 
         Usuario Update(Usuario usuario);

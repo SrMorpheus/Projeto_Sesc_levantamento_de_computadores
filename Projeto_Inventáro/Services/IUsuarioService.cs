@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Projeto_Inventáro.Hypermedia.Utils;
 using Projeto_Inventáro.Models;
 
 
@@ -28,6 +28,10 @@ namespace Projeto_Inventáro.Services
         List<UsuarioVO> SetorPesquisar(int id);
 
         List<UsuarioVO> ComputadorPesquisar(int id);
+
+        List<UsuarioVO> FindByName(string nome);
+
+        PagedSearchVO<UsuarioVO> FindWithPagedSearch(string name, string sortDirection, int pageSize, int page);
 
 
 

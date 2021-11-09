@@ -1,4 +1,5 @@
 ﻿using Projeto_Inventáro.Data.VO;
+using Projeto_Inventáro.Hypermedia.Utils;
 using Projeto_Inventáro.Models;
 using System.Collections.Generic;
 
@@ -14,6 +15,9 @@ namespace Projeto_Inventáro.Services.Implementations
 
         List<ComputadorVO> FindAll();
 
+
+        PagedSearchVO<ComputadorVO> FindWithPagedSearch(string name, string sortDirection, int pageSize, int page);
+
         ComputadorVO Update(ComputadorVO computador);
 
         void Delete(int id);
@@ -25,7 +29,9 @@ namespace Projeto_Inventáro.Services.Implementations
         List<ComputadorVO> SetorPesquisar(int id);
 
 
+        List<ComputadorVO> FindByName(string nomeComputador);
 
+        List<ComputadorVO> FindByIp(string ip);
 
     }
 }

@@ -146,5 +146,63 @@ namespace Projeto_Inventáro.Repository
 
             return usuario.ToList();
         }
+
+        public List<Usuario> FindByName(string nome)
+        {
+
+            if (!string.IsNullOrWhiteSpace(nome))
+            {
+
+                return _context.Usuarios.Include(C => C.Computadores).Include(S => S.Setores).Include(E => E.Computadores.Equipamentos).Include(S => S.Computadores.Setores).Include(M => M.Computadores.Modelos).AsNoTracking().Where(U => U.NomeUsuario.Contains(nome)).ToList();
+
+                   
+
+            }
+
+
+            return null;
+
+
+    
+        
+        }
+
+        public List<Usuario> FindWithPagedSearch(string query)
+        {
+
+            return _context.Usuarios.FromSqlRaw<Usuario>(query).Include(C => C.Computadores).Include(S => S.Setores).Include(E => E.Computadores.Equipamentos).Include(S => S.Computadores.Setores).Include(M => M.Computadores.Modelos).ToList();
+
+
+
+
+
+        }
+
+        public int GetCount(string query)
+        {
+
+
+            var result = "";
+
+            using (var connection = _context.Database.GetDbConnection())
+            {
+
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = query;
+
+                    result = command.ExecuteScalar().ToString();
+
+                }
+            }
+
+
+            return int.Parse(result);
+
+        }
+
     }
+
 }

@@ -177,5 +177,69 @@ namespace Projeto_Inventáro.Repository
 
             return computador.ToList();
         }
+
+        public List<Computador> FindByName(string nomeComputador)
+        {
+
+
+            if (!string.IsNullOrWhiteSpace(nomeComputador))
+            {
+                return _context.Computadors.Include(E => E.Equipamentos).Include(S => S.Setores).Include(M => M.Modelos).AsNoTracking().Where(c => c.NomeComputador.Contains(nomeComputador)).ToList();
+
+
+            }
+
+            return null;
+
+        }
+
+        public List<Computador> FindByIp(string ip)
+        {
+
+            if (!string.IsNullOrWhiteSpace(ip))
+
+            {
+                return   _context.Computadors.Include(E => E.Equipamentos).Include(S => S.Setores).Include(M => M.Modelos).AsNoTracking().Where(c => c.EnderecoIp.Contains(ip)).ToList();
+
+
+
+            }
+
+            return null;
+
+
+        }
+
+        public List<Computador> FindWithPagedSearch(string query)
+        {
+
+            return _context.Computadors.FromSqlRaw<Computador>(query).Include(E => E.Equipamentos).Include(S => S.Setores).Include(M => M.Modelos).ToList();
+
+        }
+
+        public int GetCount(string query)
+        {
+
+
+            var result = "";
+
+            using (var connection = _context.Database.GetDbConnection())
+            {
+
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = query;
+
+                    result = command.ExecuteScalar().ToString();
+
+                }
+            }
+
+
+                return int.Parse(result);
+
+        }
     }
 }

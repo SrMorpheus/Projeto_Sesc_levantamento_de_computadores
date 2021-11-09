@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Projeto_Inventáro.Hypermedia.Abstract;
+using Projeto_Inventáro.Hypermedia.Utils;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Projeto_Inventáro.Hypermedia
         public bool CanEnrich(Type type)
         {
 
-            return type == typeof(T) || type == typeof(List<T>);
+            return type == typeof(T) || type == typeof(List<T>) || type == typeof(PagedSearchVO<T>);
 
         }
 
@@ -60,6 +61,20 @@ namespace Projeto_Inventáro.Hypermedia
                      });
 
                 }
+
+                else if (objectResult.Value is PagedSearchVO<T> pagedSearch)
+                {
+
+
+                    Parallel.ForEach(pagedSearch.List.ToList(), (element) =>
+                    {
+
+                        ErinchModel(element, urlHelper);
+
+                    });
+
+                }
+
 
             }
             await Task.FromResult<object>(null);

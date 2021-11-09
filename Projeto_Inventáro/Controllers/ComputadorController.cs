@@ -59,6 +59,27 @@ namespace Projeto_Inventáro.Controllers
 
         }
 
+        [HttpGet("{sortDirection}/{pageSize}/{page}")] //listar todos computadores
+        [ProducesResponseType((200), Type = typeof(List<ComputadorVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
+        [TypeFilter(typeof(HypeMediaFilter))]
+        public IActionResult Get( [FromQuery] string name , string sortDirection, int pageSize, int page)
+        {
+
+            var computador = _computadorService.FindWithPagedSearch(name, sortDirection, pageSize, page);
+
+
+         
+            return Ok(computador);
+
+
+
+        }
+
+
 
         [HttpGet("{id}")]
         [ProducesResponseType((200), Type = typeof(ComputadorVO))]
@@ -82,6 +103,66 @@ namespace Projeto_Inventáro.Controllers
             return Ok(computador);
 
         }
+
+
+
+        //Pesquisar pelo nome computador 
+
+        [HttpGet("findComputadorByName")]
+        [ProducesResponseType((200), Type = typeof(ComputadorVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [TypeFilter(typeof(HypeMediaFilter))]
+
+        public IActionResult FindComputadorByName([FromQuery]string nomeComputador)
+        {
+
+            var computador = _computadorService.FindByName(nomeComputador);
+
+
+            if (computador == null)
+            {
+                return NotFound();
+            }
+
+
+            return Ok(computador);
+
+        }
+
+
+
+
+            //Pesquisar pelo IP
+
+        [HttpGet("findComputadorIp")]
+        [ProducesResponseType((200), Type = typeof(ComputadorVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [TypeFilter(typeof(HypeMediaFilter))]
+
+
+        public IActionResult FindComputadorIp([FromQuery] string ip)
+        {
+
+            var computador = _computadorService.FindByIp(ip);
+
+            if (computador == null)
+            {
+
+                return NotFound();
+
+            }
+
+            return Ok(computador);
+
+
+
+        }
+
+
 
 
         //Pesquisar pelo modelo

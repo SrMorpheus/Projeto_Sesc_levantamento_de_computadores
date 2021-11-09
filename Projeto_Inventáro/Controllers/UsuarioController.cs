@@ -94,6 +94,57 @@ namespace Projeto_Inventáro.Controllers
 
         }
 
+        [HttpGet("{sortDirection}/{pageSize}/{page}")] //listar todos usuarios pela paginação
+        [ProducesResponseType((200), Type = typeof(List<UsuarioVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
+        public IActionResult Get([FromQuery] string name, string sortDirection, int pageSize, int page)
+        {
+
+            var usuario = _usuarioServicecs.FindWithPagedSearch(name, sortDirection, pageSize, page);
+
+
+
+            return Ok(usuario);
+
+
+
+        }
+
+
+
+
+        [HttpGet("findUsuarioByName")] //lista pelo nome do usuario 
+
+
+        [ProducesResponseType((200), Type = typeof(UsuarioVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+
+        public IActionResult FindUsuarioByName( [FromQuery] string nome)
+        {
+            var usuario = _usuarioServicecs.FindByName(nome);
+
+
+
+
+            if (usuario == null)
+            {
+
+                return NotFound();
+
+            }
+
+            return Ok(usuario);
+
+
+
+        }
+
+
 
         //Pesquisar pelo Setor
 

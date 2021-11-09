@@ -26,6 +26,18 @@ namespace Projeto_Inventáro.Repository
         List<Computador> SetorPesquisar(int id);
 
 
+        List<Computador> FindByName(string nomeComputador);
+
+        List<Computador> FindByIp(string ip);
+
+
+        List<Computador> FindWithPagedSearch(string query);
+
+
+        int GetCount(string query);
+
+
+
 
 
     }
