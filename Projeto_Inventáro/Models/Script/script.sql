@@ -10,7 +10,7 @@ CREATE database CTI_TESTE04;
 	/*Criação da tabela usuario com uma pk de controle e sera add futuramente os nomes dos usarios*/
 	CREATE TABLE `tbl_usuario`(
     cod_usuario INT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    nome_usario VARCHAR(50) ,
+    nome_usuario VARCHAR(50) ,
 	fk_setor INT(2) NOT NUll,
     fk_computador INT(30) NOT NULL
 );

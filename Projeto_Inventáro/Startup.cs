@@ -29,6 +29,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using System.IO;
 
 namespace Projeto_Inventáro
 {
@@ -161,6 +162,8 @@ namespace Projeto_Inventáro
             //versionamento da api
             services.AddApiVersioning();
 
+
+           
 
             services.AddSwaggerGen(c => {
 

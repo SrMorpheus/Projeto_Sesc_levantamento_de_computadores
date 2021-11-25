@@ -19,17 +19,24 @@ namespace Projeto_Inventáro.Controllers
         private ILoginService _loginService;
 
 
-        public AuthController( ILoginService loginService)
+        public AuthController(ILoginService loginService)
         {
 
             _loginService = loginService;
 
         }
 
+
+
+        /// <summary>
+        /// Lista os itens da To-do list.
+        /// </summary>
+        /// <returns>Os itens da To-do list</returns>
+        /// <response code="200">Returna os itens da To-do list cadastrados</response>
+     
         [HttpPost]
 
         [Route("signin")]
-
         public IActionResult Signin ([FromBody] LoginVO loginVO)
         {
 

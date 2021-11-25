@@ -34,7 +34,11 @@ namespace Projeto_Inventáro.Controllers
 
         }
 
-
+        /// <summary>
+        /// Deletes a specific TodoItem.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet] //listar todos computadores
         [ProducesResponseType( (200), Type = typeof(List<ComputadorVO>))]
         [ProducesResponseType(204)]
